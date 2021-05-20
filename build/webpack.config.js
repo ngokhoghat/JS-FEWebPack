@@ -1,7 +1,6 @@
 // Libraries
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -10,8 +9,6 @@ const MinifyPlugin = require('babel-minify-webpack-plugin');
 const multi = require('multi-loader');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 require('babel-polyfill');
-
-// const viewsFolder = path.resolve(__dirname, '../src/views/pages');
 
 // Files
 const utils = require('./utils');
@@ -26,11 +23,6 @@ module.exports = (env) => {
         'babel-polyfill',
         './assets/styles/_app.scss',
         './app.js',
-      ],
-      app_JP: [
-        'babel-polyfill',
-        './assets/styles/_app-JP.scss',
-        './app_JP.js',
       ],
     },
     output: {
@@ -146,13 +138,6 @@ module.exports = (env) => {
         filename: '[name].bundle.css',
         allChunks: true,
       }),
-    //   new webpack.optimize.CommonsChunkPlugin({
-    //     name: 'vendor',
-    //   }),
-
-      /*
-      Pages
-    */
 
       // // Desktop page
       new HtmlWebpackPlugin({
@@ -162,14 +147,6 @@ module.exports = (env) => {
         chunks: ['app', 'index'],
         chunksSortMode: (a, b) => (a.names[0] === 'index' ? 1 : 0),
       }),
-      new HtmlWebpackPlugin({
-        locale: 'jp_JP',
-        filename: 'index_JP.html',
-        template: 'views/index.pug',
-        chunks: ['app_JP', 'index'],
-        chunksSortMode: (a, b) => (a.names[0] === 'index' ? 1 : 0),
-      }),
-
 
       new webpack.ProvidePlugin({
         $: 'jquery',

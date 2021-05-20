@@ -15,12 +15,6 @@ exports.pages = function (entry) {
       inject: true,
       chunks: ['app', 'index'],
     };
-    // const options_JP = {
-    //   filename: `${viewName}/index_JP.html`,
-    //   template: `views/pages/${view}`,
-    //   inject: true,
-    //   chunks: ['app_JP', 'index'],
-    // };
 
     pages.push(new HtmlWebpackPlugin(options));
     // pages.push(new HtmlWebpackPlugin(options_JP));
